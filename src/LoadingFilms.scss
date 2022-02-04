@@ -1,0 +1,42 @@
+.LoadingFilms {
+  height: 365px;
+  width: 100%;
+
+  border-radius: 15px;
+
+  padding: 15px;
+
+  border-radius: 15px;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow: 5px 5px 10px #9d9d9d, -5px -5px 10px #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  text-transform: uppercase;
+
+  .loaging-logo {
+    animation: App-logo-spin infinite 4s linear;
+
+    height: 230px;
+    pointer-events: none;
+  }
+
+  .loading-text {
+    background-color: black;
+    font-family: "BoorsokFont";
+    font-size: 28px;
+    color: white;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

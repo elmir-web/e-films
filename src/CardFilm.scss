@@ -1,0 +1,109 @@
+.CardFilm {
+  margin-right: 15px;
+
+  &:hover {
+    // background-color: red;
+
+    & .film-wrapper .film-information {
+      z-index: 1;
+      cursor: pointer;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0px;
+  }
+
+  .film-wrapper {
+    position: relative;
+
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow: 5px 5px 10px #9d9d9d, -5px -5px 10px #ffffff;
+
+    .poster-wrapper {
+      padding-top: 15px;
+      padding-bottom: 15px;
+
+      .backgroundPosterImg {
+        margin-left: 15px;
+        margin-right: 15px;
+        // margin-bottom: 15px;
+        height: 365px;
+        width: 262px;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        border-radius: 15px;
+      }
+    }
+
+    .film-information {
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      color: red;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 26.43%,
+        rgba(0, 0, 0, 0.8) 72.41%
+      );
+      backdrop-filter: blur(2px);
+      border-radius: 15px;
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      .FilmRating {
+        margin-left: 1px;
+
+        font-family: "Roboto", Arial, Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 36px;
+        color: #ffffff;
+      }
+
+      .Name {
+        margin-left: 1px;
+        color: #ffffff;
+        margin-bottom: 10px;
+        font-family: "Roboto", Arial, Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 36px;
+      }
+
+      .Type {
+        margin-left: 1px;
+        color: #ffffff;
+        margin-bottom: 10px;
+        font-family: "Roboto", Arial, Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 36px;
+      }
+
+      .Meta {
+        margin-left: 5px;
+        margin-right: 5px;
+        display: flex;
+        justify-content: space-between;
+
+        font-family: "Roboto", Arial, Helvetica, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        color: #ffffff;
+      }
+    }
+  }
+}
