@@ -187,7 +187,9 @@ function App() {
 
   return (
     <div className="App">
-      <p>Количество фильмов: {stateFilms.length}</p>
+      <p>
+        Количество фильмов: {filmsArray.length} (Загружено: {stateFilms.length})
+      </p>
       <div className="films-wrapper">
         {loadingFilms === true ? (
           <LoadingFilms />
