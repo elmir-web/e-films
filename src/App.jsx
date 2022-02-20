@@ -89,6 +89,7 @@ function requestFilm(index, film, setStateFilms, promiseActions) {
     index, // Передаваемые по очереди параметры
     film, // Передаваемые по очереди параметры
     setStateFilms, // Передаваемые по очереди параметры
+
     promiseActions // Передаваемые по очереди параметры
   );
 }
