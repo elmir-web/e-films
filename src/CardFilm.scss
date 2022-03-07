@@ -59,7 +59,7 @@
       justify-content: flex-end;
 
       .FilmRating {
-        margin-left: 1px;
+        margin-left: 20px;
 
         font-family: "Roboto", Arial, Helvetica, sans-serif;
         font-style: normal;
@@ -70,7 +70,7 @@
       }
 
       .Name {
-        margin-left: 1px;
+        margin-left: 20px;
         color: #ffffff;
         margin-bottom: 10px;
         font-family: "Roboto", Arial, Helvetica, sans-serif;
@@ -81,7 +81,7 @@
       }
 
       .Type {
-        margin-left: 1px;
+        margin-left: 20px;
         color: #ffffff;
         margin-bottom: 10px;
         font-family: "Roboto", Arial, Helvetica, sans-serif;
@@ -92,8 +92,9 @@
       }
 
       .Meta {
-        margin-left: 5px;
-        margin-right: 5px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
         display: flex;
         justify-content: space-between;
 

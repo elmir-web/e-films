@@ -14,7 +14,12 @@ function CardFilm({ FilmData }) {
           ></div>
         </div>
 
-        <div className="film-information">
+        <div
+          className="film-information"
+          onClick={() => {
+            window.open(`https://www.kinopoisk.ru/film/${FilmData.filmId}/`);
+          }}
+        >
           <div className="FilmRating">
             <span>Рейтинг {FilmData.rating}</span>
           </div>

@@ -24,11 +24,11 @@ class errorClass {
 }
 
 function App() {
-  const [loadingFilms, setLoadingFilms] = useState(true);
+  const [loadingStatus, setLoadingStatus] = useState(true);
   const [stateFilms, setStateFilms] = useState([]);
 
   useEffect(() => {
-    componentWillMount(setStateFilms, setLoadingFilms);
+    componentWillMount(setStateFilms, setLoadingStatus);
   }, []);
 
   return (
@@ -36,8 +36,9 @@ function App() {
       <p>
         Количество фильмов: {filmsArray.length} (Загружено: {stateFilms.length})
       </p>
+
       <div className="films-wrapper">
-        {loadingFilms === true ? (
+        {loadingStatus === true ? (
           <LoadingFilms />
         ) : (
           stateFilms.map((stFilm, index) => {
@@ -51,12 +52,12 @@ function App() {
 
 export default App;
 
-function componentWillMount(setStateFilms, setLoadingFilms) {
+function componentWillMount(setStateFilms, setLoadingStatus) {
   let promiseLoading = new Promise((resolve, reject) => {
     for (let j = 0; j < filmsArray.length; j++) {
       let film = filmsArray[j];
 
-      timerFetchFilm = setTimeout(fetchFilm, j * 200, j, film, {
+      timerFetchFilm = setTimeout(fetchFilm, 400 * (j + 1), j, film, {
         resolve,
         reject,
       });
@@ -67,21 +68,24 @@ function componentWillMount(setStateFilms, setLoadingFilms) {
     APP_ALLFILMS.pop();
 
     if (APP_ALLFILMS.length !== filmsArray.length) {
-      componentWillMount(setStateFilms, setLoadingFilms);
+      console.log(`ОЧЕНЬ ИНТЕРЕСНО ПОЧЕМУ ЭТО СООБЩЕНИЕ ВЫШЛО`);
+      componentWillMount(setStateFilms, setLoadingStatus);
       return;
     }
 
+    console.log(APP_ALLFILMS);
+
     setStateFilms(APP_ALLFILMS);
-
-    setLoadingFilms(false);
+    setLoadingStatus(false);
   });
-
   promiseLoading.catch((error) => {
     console.log("___________________ ОШИБКА ______________________");
     console.log(error);
     console.log("___________________ ОШИБКА ______________________");
 
-    componentWillMount(setStateFilms, setLoadingFilms);
+    clearInterval(timerFetchFilm);
+
+    componentWillMount(setStateFilms, setLoadingStatus);
   });
 }
 
@@ -98,28 +102,25 @@ async function fetchFilm(index, objectFilm, promiseActions) {
       }
     );
 
-    if (!queryFilm.ok) {
+    if (!queryFilm.ok && queryFilm.status !== 200) {
       throw new errorClass("Ошибка отправленного запроса", objectFilm, index);
     }
 
     queryFilm = await queryFilm.json();
+    queryFilm = queryFilm.films;
 
-    if (!queryFilm.films.length) {
+    if (!queryFilm.length) {
       throw new errorClass("Ошибка полученного фильма", objectFilm, index);
     }
 
-    queryFilm = queryFilm.films;
-
     for (let i = 0; i < queryFilm.length; i++) {
       let filmFetch = queryFilm[i];
-
       if (
         objectFilm.FilmName.length === 1 &&
         filmFetch.nameRu === objectFilm.FilmName[0] &&
         filmFetch.year === objectFilm.DateYear
       ) {
         APP_ALLFILMS.push(filmFetch);
-
         if (index + 1 === filmsArray.length) promiseActions.resolve();
       } else if (
         objectFilm.FilmName.length === 2 &&
@@ -128,13 +129,11 @@ async function fetchFilm(index, objectFilm, promiseActions) {
         filmFetch.year === objectFilm.DateYear
       ) {
         APP_ALLFILMS.push(filmFetch);
-
         if (index + 1 === filmsArray.length) promiseActions.resolve();
       }
     }
   } catch (error) {
     clearInterval(timerFetchFilm);
-
     promiseActions.reject(error);
     return;
   }
