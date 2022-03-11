@@ -1,7 +1,11 @@
+import Toast from "./Toast";
+
 // __________________________________________________ СТИЛИ
 import "./CardFilm.scss"; // Главный файл со стилями
 
 function CardFilm({ FilmData }) {
+  let toast = null;
+
   return (
     <div className="CardFilm">
       <div className="film-wrapper">
@@ -18,6 +22,19 @@ function CardFilm({ FilmData }) {
           className="film-information"
           onClick={() => {
             window.open(`https://www.kinopoisk.ru/film/${FilmData.filmId}/`);
+          }}
+          onMouseEnter={(e) => {
+            toast = new Toast({
+              title: FilmData.nameRu,
+              text: FilmData.description,
+              theme: "info",
+              autohide: true,
+              interval: 60000,
+              e,
+            });
+          }}
+          onMouseLeave={() => {
+            toast?._hide();
           }}
         >
           <div className="FilmRating">

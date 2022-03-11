@@ -11,3 +11,63 @@
   src: url("./boorsok.otf");
   src: url("./boorsok.ttf") format("truetype");
 }
+
+:root {
+  --toast-width: 370px;
+  --toast-border-radius: 0.25rem;
+  --toast-theme-info: #0dcaf0;
+}
+
+.toast-container {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  width: var(--toast-width);
+}
+
+.container-position-right {
+  right: 15px;
+}
+
+.container-position-left {
+  left: 15px;
+}
+
+.toast {
+  font-size: 1.1rem;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--toast-border-radius);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  display: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.toast_info {
+  color: #212529;
+  background-color: var(--toast-theme-info);
+}
+
+.toast:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+.toast_show {
+  display: block;
+}
+
+.toast__header {
+  position: relative;
+  padding: 0.5rem 2.25rem 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.toast__body {
+  padding: 1rem;
+}
+
+.toast_message .toast__body {
+  padding-right: 2.25rem;
+}
